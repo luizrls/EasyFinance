@@ -1,0 +1,55 @@
+1 - Resumo do projeto
+	
+	Desenvolver uma aplicação web que seja capaz de se conectar a um banco de dados e 
+	executar operações de CRUD (Criar, Buscar, Atualizar, Deletar).
+	
+	Tema:
+	
+		Criar uma aplicação simples para gerenciamento de despesas domésticas
+	
+2 - Requisitos principais
+
+	- Utilizar arquitetura MVC
+	- Utilizar um padão de projeto (Alem do MVC)
+	- Ser uma aplicação WEB
+	- Ter persistência de dados
+	- Cronograma de desenvolvimento
+	- Diagramas de classes
+	
+3 - Tecnologias utilizadas
+
+	Front-end: HTML, CSS, Javascript, VueJS
+	Back-end: C#, .Net Core 2.2
+	Persistencia: EntityFramework
+	SGBD: MySql ou SQL Server
+	Versionamento: GitHub
+	Publicação: A definir
+
+4 - Casos de uso
+
+	- Usuario entra na tela principal e visualiza o saldo das despesas e receitas.
+	- Usuario entra na tela principal e visualiza todas as despesas e receitas incluidas.
+	- Usuario entra na tela principal e consegue incluir novas despesas / receitas.
+	- Usuario entra na tela principal e consegue selecionar e excluir as depesas / receitas.
+
+5 - Definição de entidades
+
+	- Usuario
+		Propriedades: id, nome, login, senha, status
+		Metodos: buscarUsuario(String login)
+		
+	- Transacao
+		Propriedades: id, nome, valor, status
+		Metodos: addTransacao(Transacao transacao), excTransacao(Transacao transacao), buscarTodasTransacao(String Login)
+
+6 - Testes unitários
+
+	A definir
+	
+7 - Implantação
+
+	A definir
+
+
+
+
