@@ -50,6 +50,18 @@
 
 	A definir
 
+8 - Etapas de desenvolvimento
 
+	1 - Criar o projeto front-end
+	2 - Criar o design das telas
+	3 - Programar as funcionalidades em memória
+	4 - Cria o projeto Back-end
+	5 - Criar o banco de dados
+	6 - Criar as tabelas no banco de dados
+	7 - Criar as entidades no backend
+	8 - Programar o back-end
+	9 - Testar o back-end
+	10 - Integrar o front-end com o back-end
+	11 - Fim
 
 
