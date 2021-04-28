@@ -34,12 +34,12 @@
 
 5 - Definição de entidades
 
-	- Usuario
+	- Usuarios
 		Propriedades: id, nome, login, senha, status
 		Metodos: buscarUsuario(String login)
 		
-	- Transacao
-		Propriedades: id, nome, valor, status
+	- Transacoes
+		Propriedades: id, nome, valor, status, competencia, UsuarioID
 		Metodos: addTransacao(Transacao transacao), excTransacao(Transacao transacao), buscarTodasTransacao(String Login)
 
 6 - Testes unitários
@@ -67,3 +67,18 @@
 	11 - Fim
 
 
+{"Chave":"Valor", "Chave2":1, "Obj":{"aaa":"aaa"}, "array": ["aaa","bbb","ccc"]}
+
+Model
+View
+Conjtroller
+
+HCController
+
+Verbo HTTP : Get, Post, Put, delete
+
+
+C = Criar = Post
+R = Ler = Get
+U = Editar = Put
+D = Deletar = Delete

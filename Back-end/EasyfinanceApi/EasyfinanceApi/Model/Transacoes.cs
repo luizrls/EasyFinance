@@ -25,7 +25,7 @@ namespace EasyfinanceApi.Model
         public string competencia { get; set; }
 
         [Required]
-        public string UsuarioId { get; set; }
+        public int UsuarioId { get; set; }
 
         public virtual Usuarios Usuario { get; set; }
 

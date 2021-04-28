@@ -25,6 +25,7 @@ namespace EasyfinanceApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Transacoes>>> GetTransacao()
         {
+
             return await _context.Transacao.ToListAsync();
         }
 

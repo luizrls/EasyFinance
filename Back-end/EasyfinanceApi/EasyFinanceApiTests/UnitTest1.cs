@@ -17,7 +17,7 @@ namespace EasyFinanceApiTests
         {
             var result = valor;
 
-            Assert.AreEqual(result, "aaaaa");
+            Assert.AreEqual(result, "aaaaab");
         }
     }
 }
