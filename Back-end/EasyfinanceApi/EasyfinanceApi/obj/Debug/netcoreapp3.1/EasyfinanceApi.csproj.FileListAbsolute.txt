@@ -153,5 +153,10 @@ D:\Professional\Vuejs\EasyFinance\Back-end\EasyfinanceApi\EasyfinanceApi\bin\Deb
 D:\Professional\Vuejs\EasyFinance\Back-end\EasyfinanceApi\EasyfinanceApi\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\Professional\Vuejs\EasyFinance\Back-end\EasyfinanceApi\EasyfinanceApi\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\Professional\Vuejs\EasyFinance\Back-end\EasyfinanceApi\EasyfinanceApi\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Professional\Vuejs\EasyFinance\Back-end\EasyfinanceApi\EasyfinanceApi\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\Professional\Vuejs\EasyFinance\Back-end\EasyfinanceApi\EasyfinanceApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\Professional\Vuejs\EasyFinance\Back-end\EasyfinanceApi\EasyfinanceApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Professional\Vuejs\EasyFinance\Back-end\EasyfinanceApi\EasyfinanceApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\Professional\Vuejs\EasyFinance\Back-end\EasyfinanceApi\EasyfinanceApi\obj\Debug\netcoreapp3.1\EasyfinanceApi.csproj.CoreCompileInputs.cache
+D:\Professional\Vuejs\EasyFinance\Back-end\EasyfinanceApi\EasyfinanceApi\obj\Debug\netcoreapp3.1\EasyfinanceApi.MvcApplicationPartsAssemblyInfo.cs
 D:\Professional\Vuejs\EasyFinance\Back-end\EasyfinanceApi\EasyfinanceApi\obj\Debug\netcoreapp3.1\EasyfinanceApi.MvcApplicationPartsAssemblyInfo.cache

@@ -30,7 +30,10 @@ namespace EasyfinanceApi
         {
 
             services.AddDbContext<EasyfinanceApiContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("EasyfinanceApiContext")));
+                    options.UseSqlServer("Data Source=LUIZRLS-PC;Initial Catalog=EasyFinanceDB;Persist Security Info=True;User ID=ADMIN;Password=admin"));
+
+            /*services.AddDbContext<EasyfinanceApiContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("EasyfinanceApiContext")));*/
 
             /*services.AddCors(options =>
             {
@@ -59,6 +62,9 @@ namespace EasyfinanceApi
                 o.ForwardClientCertificate = false;
             });*/
 
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen();
+
 
             //sigleton do context
             services.AddScoped<EasyfinanceApiContext, EasyfinanceApiContext>();
@@ -72,6 +78,16 @@ namespace EasyfinanceApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Easy finance Api");
+            });
 
             app.UseHttpsRedirection();
 
