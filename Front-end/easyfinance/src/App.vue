@@ -1,18 +1,19 @@
 <template>
   <div id="app">
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <TesteComponente1 titulo="Novo titulo 2"/>
+    <!-- <TesteComponente1 titulo="Novo titulo 2"/> -->
+    <router-view />
   </div>
 </template>
 
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
-import TesteComponente1 from './components/TesteComponente1.vue'
+//import TesteComponente1 from './components/TesteComponente1.vue'
 export default {
   name: 'App',
   components: {
     // HelloWorld
-    TesteComponente1
+    //TesteComponente1
   }
 }
 </script>

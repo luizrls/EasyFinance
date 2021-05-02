@@ -43,6 +43,20 @@ namespace EasyfinanceApi.Controllers
             return transacoes;
         }
 
+        // GET: api/Transacoes/5
+        [HttpGet("ByUserId/{id}")]
+        public async Task<ActionResult<IEnumerable<Transacoes>>> ByUserId(int id)
+        {
+            var transacoes = await _context.Transacao.Where(x => x.UsuarioId == id).ToListAsync() ;
+
+            if (transacoes == null)
+            {
+                return NotFound();
+            }
+
+            return transacoes;
+        }
+
         // PUT: api/Transacoes/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
