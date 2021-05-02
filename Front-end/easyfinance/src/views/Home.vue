@@ -8,7 +8,7 @@
         <ul>
             <li v-for="(item, index) in transacoes" :key="index">
                 <b>ID:</b>{{item.id}} | <b>Nome:</b> {{item.nome}} | <b>Valor:</b> {{item.valor}} 
-                <button type="button" class="btn btn-primary" @click="_getTransacoesByUsuarioId(usuario.id)"></button>
+                <button type="button" class="btn btn-primary" @click="_ExcTransacao(item.id)">excuir</button>
             </li>
         </ul>
         <button type="button" class="btn btn-primary" @click="_addTransacao()">Adicionar</button>

@@ -38,6 +38,8 @@ export const addTransacao = (transacao) => {
 };
 
 export const excTransacao = (id) => {
+  console.log(id);
   lista = lista.filter((x) => x.id !== id);
+  console.log(lista);
   return true;
 };
