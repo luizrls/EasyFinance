@@ -10,6 +10,7 @@
           height="300"
         />
       </div>
+      
       <div class="col-md-4 col-sm-12 text-justify" id="form">
         <form>
           <h2 id="txtCriarConta">Criar Conta</h2>

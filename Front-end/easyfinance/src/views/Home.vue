@@ -27,7 +27,7 @@
     </div><br>
     <div class="row row-cols-2">
       <div class="col-md-6 col-sm-12" id="transacoes">
-        <h1>Transações</h1>
+        <h1 id="txtTransacoes">Transações</h1>
         <button
           type="button"
           class="btn btn-primary"
@@ -36,7 +36,7 @@
           Atualizar
         </button>
         <ul>
-          <li v-for="(item, index) in transacoes" :key="index">
+          <li v-for="(item, index) in transacoes" :key="index" id="listaTransacoes">
             <b>ID:</b>{{ item.id }} | <b>Nome:</b> {{ item.nome }} |
             <b>Valor:</b> {{ item.valor }}
             <button
@@ -51,8 +51,8 @@
       </div>
 
       <div class="col-md-6 col-sm-12" id="addTransacoes">
-        <h1>Adicionar transação</h1>
-        <button type="button" class="btn btn-primary" @click="_addTransacao()">
+        <h1 id="txtAddTransacao">Adicionar transação</h1>
+        <button id="btnAdicionar" type="button" class="btn btn-primary" @click="_addTransacao()">
           Adicionar
         </button>
       </div>
@@ -130,13 +130,12 @@ export default {
 <style scoped>
 .container-lg{
   position: relative;
-  width: 1181px;
-  height: 592px;
+  width: 1200px;
+  height: 655px;
 
   background: linear-gradient(180deg, #cecece 99.23%, #e8f2ff 100%);
   border-radius: 30px;
 }
-
 #transacoes {
   position: inherit;
   width: 538px;
@@ -148,20 +147,37 @@ export default {
   border-radius: 10px;
   margin-left: -2em;
   margin-right: 1em;
-  
+  margin: 0 0 auto;
 }
-
 #addTransacoes {
   position: inherit;
   width: 538px;
   height: 414px;
   left: 612px;
   top: 145px;
-
+  margin: 0 0 auto;
   background: #ffffff;
   border-radius: 10px;
 }
+#txtAddTransacao{
+  position: relative;
+  width: 200px;
+  height: 43px;
+  left: 13px;
+  top: 13px;
 
+  background: #95C4D2;
+  border-radius: 10px;
+  text-align:center;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 40px;
+  text-align:center;
+
+  color: #000000;
+}
 #txtTexto{
   position: absolute;
   width: 209px;
@@ -189,7 +205,26 @@ export default {
 
   color: rgba(0, 0, 0, 0.73);
 }
+#txtTransacoes{
+  position: relative;
+  width: 200px;
+  height: 43px;
+  left: 24px;
+  top: 14px;
 
+  background: #95C4D2;
+  border-radius: 10px;
+  
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 40px;
+  /* identical to box height */
+
+  text-align: center;
+  color: #000000;
+}
 #saldoAtual{
   position: absolute;
   width: 260px;
@@ -199,7 +234,6 @@ export default {
 
   background: #FFFFFF;
 }
-
 #receitas{
  position: absolute;
   width: 260px;
@@ -209,7 +243,6 @@ export default {
 
   background: #FFFFFF;
 }
-
 #despesas{
   position:  flex;
   width: 260px;
@@ -220,6 +253,33 @@ export default {
   background: #FFFFFF;
   border-radius: 0px 30px 30px 0px;
 }
+#listaTransacoes{
+  position: relative;
+  width: 496px;
+  height: 46px;
+  left: 26px;
+  top: 80px;
 
+  background: #E1E1E1;
+  border-radius: 10px;
+}
+#btnAdicionar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 12px;
+
+  position: relative;
+  width: 318px;
+  height: 43px;
+  left: 220px;
+  top: 312px;
+
+  /* Style */
+
+  background: #037394;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+}
 
 </style>
