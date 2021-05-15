@@ -1,7 +1,7 @@
 <template>
-    <div class="container-md">
-      <div class="row">
-        <div class="col-md-8 col-sm-12">
+    <b-container fluid="md">
+      <b-row fluid="md">
+        <b-col cols="8" sm="12">
           <img
             src="@/assets/img/Logo.png"
             class="img-fluid max-width: 100% height: auto"
@@ -9,24 +9,33 @@
             width="700"
             height="300"
           />
-        </div>
+        </b-col>
 
-        <div class="col-md-4 col-sm-12 text-justify " id="login-entrar">
-          <form >
-            <div class="form-group" >
-              <h2>Login</h2>
-              <label for="InputEmail">E-mail</label>
-              <input
-                type="email"
-                class="form-control"
-                id="InputEmail"
-                placeholder="Digite seu E-mail"
-                aria-describedby="emailHelp"
-              />
-              <small id="emailHelp" class="form-text text-muted"
+        <b-col cols="4" sm="12" id="login-entrar">
+          <div>
+          <h2>Login</h2>
+          <b-form @submit="onSubmit" @reset="onReset" v-if="show" >
+            <b-form-group 
+                  id="input-group-1"
+                  label="Email"
+                  label-for="InputEmail"
+                  description="We'll never share your email with anyone else."
+                  aria-describedby="emailHelp"
+                >
+                  <b-form-input
+                    id="InputEmail"
+                    v-model="form.email"
+                    type="email"
+                    placeholder="Digite seu E-mail"
+                    required
+
+              
+                  >
+              </b-form-input>
+            </b-form-group>
+            <!--  <small id="emailHelp" class="form-text text-muted"
                 >Nunca compartilharemos seu email com ninguém.</small
-              >
-            </div>
+              >-->
             <div class="form-group">
               <label for="InputPassword">Senha</label>
               <input
@@ -43,22 +52,37 @@
               <label>Não tem Cadastro?<a href="/Cadastro>"> Cadastre-se </a>
               </label>
             </div>
-          </form>
-        </div>
-      </div>
-    </div>
+          </b-form>
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
+    
 </template>
 
 <script>
 export default {
   name: "Login",
+
+  data() {
+      return {
+        form: {
+          email: '',
+          name: '',
+          food: null,
+          checked: []
+        },
+        foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
+        show: true
+      }
+    },
 };
 </script>
 
 }
 <style scoped>
-.container-md {
-  position: relative;
+.b-container {
+  position: absolute;
   width: 1181px;
   height: 592px;
 
