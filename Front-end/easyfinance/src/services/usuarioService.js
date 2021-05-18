@@ -1,4 +1,24 @@
-const lista = [
+import api from "./api.js";
+
+const usuarioAPI = {
+  logar: async (login, senha) =>
+    await api
+      .post("/Usuarios/Logar", {
+        id: 0,
+        nome: "string",
+        login: login,
+        senha: senha,
+        status: "string",
+        transacoes: [],
+      })
+      .then((number) => console.log(number))
+      .catch((err) => console.error(err)),
+  addUsuario: (usuario) => api.post("/Usuarios", usuario),
+};
+
+export default usuarioAPI;
+
+/* const lista = [
   {
     id: 1,
     nome: "Usuario Teste 1",
@@ -31,4 +51,4 @@ export const logar = (login, senha) => {
 export const addUsuario = (usuario) => {
   lista.push(usuario);
   return usuario;
-};
+}; */

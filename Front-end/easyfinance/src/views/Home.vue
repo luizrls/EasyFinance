@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import {getTransacoesByUsuarioId, addTransacao, excTransacao} from '@/services/transacaoService.js'
+import transacaoAPI from '@/services/transacaoService.js'
 
 export default {
 name: 'Home',
 methods: {
   _getTransacoesByUsuarioId(id){
-    var retorno = getTransacoesByUsuarioId(id);
+    var retorno = transacaoAPI.getTransacoesByUsuarioId(id);
     console.log(retorno);
     var saldoAtual = 0;
     var receitas = 0;
@@ -54,12 +54,12 @@ methods: {
         usuarioId: 1,
         usuario: null,
     }
-    addTransacao(transacao);
+    transacaoAPI.addTransacao(transacao);
     this._getTransacoesByUsuarioId(1);
 
   },
   _ExcTransacao(id){
-    excTransacao(id);
+    transacaoAPI.excTransacao(id);
     this._getTransacoesByUsuarioId(1);
   },
 },

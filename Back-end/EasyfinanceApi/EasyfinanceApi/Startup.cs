@@ -18,6 +18,7 @@ namespace EasyfinanceApi
 {
     public class Startup
     {
+        readonly string CorsPolicy = "_CorsPolicy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,32 +36,32 @@ namespace EasyfinanceApi
             /*services.AddDbContext<EasyfinanceApiContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("EasyfinanceApiContext")));*/
 
-            /*services.AddCors(options =>
+            services.AddCors(options =>
             {
-                options.AddPolicy("CorsPolicy",
+                options.AddPolicy(name: CorsPolicy,
                     builder => builder
                         // required if AllowCredentials is set also
-                        .SetIsOriginAllowed(s => true)
-                        //.AllowAnyOrigin()
+                        //.SetIsOriginAllowed(s => true)
+                        .AllowAnyOrigin()
                         .AllowAnyMethod()  // doesn't work for DELETE!
                         .WithMethods("DELETE")
                         .AllowAnyHeader()
-                        .AllowCredentials()
+                        //.AllowCredentials()
                 );
             });
 
-            services.Configure<FormOptions>(o =>
+            /*services.Configure<FormOptions>(o =>
             {
                 o.ValueLengthLimit = int.MaxValue;
                 o.MultipartBodyLengthLimit = int.MaxValue;
                 o.MemoryBufferThreshold = int.MaxValue;
-            });
+            });*/
 
 
             services.Configure<IISOptions>(o =>
             {
                 o.ForwardClientCertificate = false;
-            });*/
+            });
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
@@ -89,9 +90,12 @@ namespace EasyfinanceApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Easy finance Api");
             });
 
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(CorsPolicy);
 
             app.UseAuthorization();
 

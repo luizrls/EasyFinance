@@ -13,7 +13,7 @@
         </div>
 
         <div class="col-md-4 col-sm-12 text-justify" id="login-entrar">
-          <form>
+          <form v-on:submit.prevent>
             <div class="form-group">
               <h2>Login</h2>
               <label for="exampleInputEmail1">E-mail</label>
@@ -22,6 +22,7 @@
                 class="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
+                v-model="login"
               />
               <small id="emailHelp" class="form-text text-muted"
                 >Nunca compartilharemos seu email com ninguém.</small
@@ -33,9 +34,10 @@
                 type="password"
                 class="form-control"
                 id="exampleInputPassword1"
+                v-model="senha"
               />
             </div>
-            <button type="submit" class="btn btn-primary" id="btnentrar">
+            <button type="submit" class="btn btn-primary" id="btnentrar" v-on:click="logar()">
               Entrar
             </button>
           </form>
@@ -45,9 +47,24 @@
 </template>
 
 <script>
+import usuarioAPI from '@/services/usuarioService.js';
 export default {
   name: "Login",
+  data() {
+    return {
+      login: "",
+      senha: ""
+    }
+  },
+  methods: {
+    async logar(){
+      console.log("metodo logar")
+      var usuario = await usuarioAPI.logar(this.login, this.senha);
+      console.log(usuario);
+    }
+  },
 };
+
 </script>
 
 }
