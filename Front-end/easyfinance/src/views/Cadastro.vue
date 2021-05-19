@@ -52,7 +52,7 @@
             />
           </div>
           <button type="submit" class="btn btn-primary text-center" id="btnCadastrar">
-            Cadastrar
+           <a href="/Login" >Cadastrar</a>
           </button>
         </form>
       </div>
@@ -62,7 +62,7 @@
 
 <script>
 export default {
-  name: "Cadastro",
+  name: "/Cadastro",
 };
 </script>
 
@@ -84,7 +84,7 @@ export default {
   top: 166px;
 }
 #form {
- position: absolute;
+  position: absolute;
   width: 435px;
   height: 550px;
   left: 730px;

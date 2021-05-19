@@ -9,7 +9,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 
 // Isso importa todos os componentes de layout, como <b-container>, <b-row>, <b-col>
 import {LayoutPlugin} from 'bootstrap-vue';
-Vue.use (LayoutPlugin)
+Vue.use (LayoutPlugin);
 
 Vue.config.productionTip = false;
 

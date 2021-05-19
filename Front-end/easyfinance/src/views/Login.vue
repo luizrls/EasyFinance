@@ -1,154 +1,161 @@
 <template>
-    <b-container fluid="md">
-      <b-row fluid="md">
-        <b-col cols="8" sm="12">
-          <img
-            src="@/assets/img/Logo.png"
-            class="img-fluid max-width: 100% height: auto"
-            alt="Responsive image"
-            width="700"
-            height="300"
-          />
-        </b-col>
+  <div class="container-md">
+    <div class="row">
+      <div class="col-md-8 col-sm-12">
+        <img
+          src="@/assets/img/Logo.png"
+          class="img-fluid max-width: 100% height: auto"
+          alt="Responsive image"
+          width="700"
+          height="300"
+        />
+      </div>
 
-        <b-col cols="4" sm="12" id="login-entrar">
-          <div>
-          <h2>Login</h2>
-          <b-form @submit="onSubmit" @reset="onReset" v-if="show" >
-            <b-form-group 
-                  id="input-group-1"
-                  label="Email"
-                  label-for="InputEmail"
-                  description="We'll never share your email with anyone else."
-                  aria-describedby="emailHelp"
-                >
-                  <b-form-input
-                    id="InputEmail"
-                    v-model="form.email"
-                    type="email"
-                    placeholder="Digite seu E-mail"
-                    required
-
-              
-                  >
-              </b-form-input>
-            </b-form-group>
-            <!--  <small id="emailHelp" class="form-text text-muted"
-                >Nunca compartilharemos seu email com ninguém.</small
-              >-->
-            <div class="form-group">
-              <label for="InputPassword">Senha</label>
-              <input
-                type="password"
-                class="form-control"
-                id="InputPassword"
-                placeholder="Digite sua Senha"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary" id="btnentrar">
-              Entrar
-            </button><br>
-            <div class="text-center">  
-              <label>Não tem Cadastro?<a href="/Cadastro>"> Cadastre-se </a>
-              </label>
-            </div>
-          </b-form>
+      <div class="col-md-4 col-sm-12 text-justify" id="form">
+        <form>
+          <h2 id="txtLogin">Login</h2>
+          <div class="form-group">
+            <label id="txtEmail" for="InputEmail">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="Email"
+              placeholder="Digite seu e-mail"
+            />
           </div>
-        </b-col>
-      </b-row>
-    </b-container>
-    
+          <div class="form-group">
+            <label id="txtSenha" for="InputPassword">Senha</label>
+            <input
+              type="password"
+              class="form-control"
+              id="Password"
+              placeholder="Digite sua senha"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary" id="btnEntrar" >
+          <a href="/Home">Entrar</a></button
+          ><br />
+          <div class="text-center">
+            <label id="Cadastre"
+              >Não tem Cadastro?<a href="/Cadastro"> Cadastre-se </a>
+            </label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: "Login",
-
-  data() {
-      return {
-        form: {
-          email: '',
-          name: '',
-          food: null,
-          checked: []
-        },
-        foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
-        show: true
-      }
-    },
 };
 </script>
 
-}
-<style scoped>
-.b-container {
+<style>
+#txtLogin {
   position: absolute;
-  width: 1181px;
-  height: 592px;
+  width: 75px;
+  height: 42px;
+  left: calc(50% - 75px / 2 + 16px);
+  top: calc(50% - 42px / 2 - 129px);
 
-  background: linear-gradient(180deg, #cecece 99.23%, #e8f2ff 100%);
-  border-radius: 30px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 42px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+
+  color: #000000;
 }
-
-#InputEmail {
-  width: 296px;
+#Email {
+  position: absolute;
+  width: 345px;
   height: 62px;
-  left: 829px;
+  left: 20px;
   top: 260px;
 
   background: rgba(3, 115, 148, 0.42);
   border-radius: 10px;
 }
-
-#InputPassword{
-  width: 296px;
+#txtEmail {
+  position: absolute;
   height: 62px;
-  left: 829px;
+  left: 8.81%;
+  right: 34.01%;
+  top: 260px;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+
+  color: #000000;
+}
+#Password {
+  position: absolute;
+  width: 345px;
+  height: 62px;
+  left: 20px;
   top: 334px;
 
   background: rgba(3, 115, 148, 0.42);
   border-radius: 10px;
 }
+#txtSenha {
+  position: absolute;
+  height: 62px;
+  left: 8.81%;
+  right: 34.01%;
+  top: 334px;
 
-#btnentrar {
-  display: flex;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+
+  color: #000000;
+}
+#btnEntrar {
   flex-direction: row;
   align-items: center;
   padding: 8px 12px;
 
-  width: 296px;
+  position: absolute;
+  width: 100px;
   height: 43px;
+  left: 150px;
   top: 424px;
 
   background: #037394;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.06);
   border-radius: 10px;
 }
-
-.img-fluid{
+#Cadastre {
   position: absolute;
-  width: 746px;
-  height: 236px;
-  left: 0px;
-  top: 166px;
-}
+  height: 20px;
+  left: 20.76%;
+  right: 17.5%;
+  top: 495px;
 
-#login-entrar {
-    position: absolute;
-    width: 435px;
-    height: 550px;
-    left: 730px;
-    top: 1px;
-    background: #ffffff;
-    border-radius: 7px;
-    padding: 50px 50px 50px 50px;
-    margin-left: 5px;
-    margin-top: 5px;
-    margin: 1em;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  /* identical to box height, or 137% */
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+  display: flex;
+  align-items: center;
+
+  color: #037394;
+
+  border: 1px solid #e5e5e5;
 }
 </style>

@@ -1,122 +1,122 @@
 <template>
-  <div class="container-lg">
-    <div class="row">
-      <div class="col-md-3 col-sm-12">
-        <h3>Bem Vindo!</h3>
-      </div>
-    </div>
-    <div class="row row-cols-4">
-      <div class="col-md-3 col-sm-12" id="txtTexto">
-        <h3 id="txt">ONDE ESTA O MEU DINHEIRO</h3>
-      </div>
-      <div class="col-md-3 col-sm-12" id="saldoAtual">
-        <h3 id="txtSaldoAtual">
-          Saldo atual
-          <label id="saldo"
-            >R$<b>{{ saldoAtual }}</b></label
+  <b-container fuid="md">
+    <b-row >
+      <h3 id="T1">Bem Vindo!</h3>
+    </b-row><br>
+    <b-row fuid="md">
+      <b-col cols="3" class="col-md-3" fluid="md" id="col1">
+        <h3 id="txt-col1" fuid="md">ONDE ESTA O MEU DINHEIRO</h3>
+      </b-col>
+      <b-col cols="3" class="col-md-3" fluid="md" id="col2">
+        <h3 id="txt-col2" fuid="md">Saldo atual</h3>
+        <label id="saldo"
+            >R$<b>{{ saldoAtual }}</b>
+        </label>
+      </b-col>
+      <b-col cols="3" class="col-md-3" fluid="md" id="col3">
+        <h3 id="txt-col3" fuid="md">Receitas</h3>
+        <label id="receita"
+            >R$<b>{{ receitas }}</b>
+            </label>
+      </b-col>
+      <b-col cols="3" class="col-md-3" fluid="md" id="col4">
+        <h3 id="txt-col4" fuid="md">Despesas</h3>
+        <label id="despesa"
+            >R$<b>{{ despesas }}</b></label
           >
-        </h3>
-      </div>
-      <div class="col-md-3 col-sm-12" id="receitas">
-        <h3>
-          Receitas: <b>{{ receitas }}</b>
-        </h3>
-      </div>
-      <div class="col-md-3 col-sm-12" id="despesas">
-        <h3>
-          Despesas: <b>{{ despesas }}</b>
-        </h3>
-      </div>
-    </div>
+      </b-col>
+    </b-row>
     <br />
-    <div class="row row-cols-2">
-      <div class="col-md-6 col-sm-12" id="transacoes">
+
+    <b-row fluid="md" align-h="around" class="row row-cols-2">
+
+      <b-col cols="6" cols-md="12" fluid="md"  id="transacoes" >
         <h1 id="txtTransacoes">Transações</h1>
-        <ul>
-          <li
-            v-for="(item, index) in transacoes"
-            :key="index"
-            id="listaTransacoes"
-          >
-            {{ item.nome }} | <b>R$ </b> {{ item.valor }}
-            <button
-              type="button"
-              class="btn btn-primary"
-              @click="_ExcTransacao(item.id)"
-            >
-              X
-            </button>
-          </li>
-          <button
+        <button
+            id="atualizar"
             type="button"
             class="btn btn-primary"
             @click="_getTransacoesByUsuarioId(usuario.id)"
           >
             Atualizar
           </button>
+        <div >
+        <ul id="listaTransacoes">
+         <li class="list-group-item d-flex justify-content-between align-items-center"
+            v-for="(item, index) in transacoes"
+            :key="index"
+            
+          >
+           {{ item.nome }}
+            <span class="badge badge-primary badge-pill" data-spy="scroll"><b>R$ </b> {{ item.valor }}</span>
+            <button aria-label="Close"
+              type="button"
+              class="btn btn-primary"
+              @click="_ExcTransacao(item.id)"
+            >
+              x
+            </button>
+          </li>    
         </ul>
-      </div>
-      
-      <div class="col-md-6 col-sm-12" id="addTransacoes">
-        <h1 id="txtAddTransacao">Adicionar transação</h1>
-        <div>
-          <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-            <b-form-group
-              class="text-justify"
-              id="input-group-1"
-              label="Nome"
-              label-for="input-1"
-            >
-              <b-form-input
-                id="input-1"
-                v-model="form.name"
-                type="Name"
-                placeholder="Nome da Transação"
-                required
-              ></b-form-input>
-            </b-form-group>
-
-            <b-form-group
-              id="input-group-2"
-              label="Valor"
-              label-for="input-2"
-              class="text-justify"
-            >
-              <b-form-input
-                id="input-2"
-                v-model="form.value"
-                placeholder="Valor da Transação"
-                required
-              ></b-form-input>
-            </b-form-group>
-
-            <b-form-group
-              id="input-group-2"
-              label="Data"
-              label-for="input-2"
-              class="text-justify"
-            >
-              <b-form-input
-                id="input-2"
-                v-model="form.date"
-                placeholder="Data da Transação"
-                required
-              ></b-form-input>
-            </b-form-group>
-          </b-form>
         </div>
+      </b-col>
 
+      <b-col cols="6" cols-md="12" fluid="md" id="addTransacoes">
+        <h1 id="txtAddTransacao">Adicionar transação</h1>
+        <b-form>
+          <b-form-group
+            class="text-justify"
+            id="input-group-1"
+            label="Nome"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              v-model="form.name"
+              type="Name"
+              placeholder="Nome da Transação"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            id="input-group-2"
+            label="Valor"
+            label-for="input-2"
+            class="text-justify"
+          >
+            <b-form-input
+              id="input-2"
+              v-model="form.value"
+              placeholder="Valor da Transação"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            id="input-group-3"
+            label="Data"
+            label-for="input-2"
+            class="text-justify"
+          >
+            <b-form-input
+              id="input-3"
+              v-model="form.date"
+              placeholder="Data da Transação"
+              required
+            ></b-form-input>
+          </b-form-group>
+        </b-form>
         <button
           id="btnAdicionar"
           type="button"
           class="btn btn-primary"
-          @click="_addTransacao()"
         >
-          Adicionar
+         <label for="txtAdicionar"><a @click="_addTransacao()">Adicionar</a></label>
         </button>
-      </div>
-    </div>
-  </div>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -166,7 +166,25 @@ export default {
       excTransacao(id);
       this._getTransacoesByUsuarioId(1);
     },
+     onSubmit(event) {
+        event.preventDefault()
+        alert(JSON.stringify(this.form))
+      },
+      onReset(event) {
+        event.preventDefault()
+        // Reset our form values
+        this.form.email = ''
+        this.form.name = ''
+        this.form.food = null
+        this.form.checked = []
+        // Trick to reset/clear native browser form validation state
+        this.show = false
+        this.$nextTick(() => {
+          this.show = true
+        })
+      }
   },
+
   data() {
     return {
       count: 4,
@@ -181,220 +199,421 @@ export default {
       saldoAtual: "",
       receitas: 2,
       despesas: 3,
-    };
-  },
-
-  data2() {
-    return {
+      
       form: {
         email: "",
-        name: "",
-        food: null,
-        checked: [],
+        nome: "",
+        data: "",
       },
-      foods: [
-        { text: "Select One", value: null },
-        "Carrots",
-        "Beans",
-        "Tomatoes",
-        "Corn",
-      ],
-      show: true,
     };
   },
 };
 </script>
 
-<style scoped>
-.container-lg {
-  position: relative;
-  width: 1200px;
-  height: 655px;
+<style>
+.container{
+    position: relative;
+    width: 1181px;
+    height: 592px;
+  
+    background: linear-gradient(180deg, rgba(172, 172, 172, 0.4) 99.45%, #E8F2FF 100%);
+    border-radius: 30px;
+    box-sizing: content-box;
+  }
+  #T1{
+    position: absolute;
+    width: 170px;
+    height: 42px;
+    left: 37px;
+    top: -1px;
 
-  background: linear-gradient(180deg, #cecece 99.23%, #e8f2ff 100%);
-  border-radius: 30px;
-}
-#transacoes {
-  position: inherit;
-  width: 538px;
-  height: 414px;
-  left: 37px;
-  top: 145px;
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 42px;
+    /* identical to box height */
 
-  background: #ffffff;
-  border-radius: 10px;
-  margin-left: -2em;
-  margin-right: 1em;
-  margin: 0 0 auto;
-  overflow-y: scroll;
-}
-#addTransacoes {
-  position: inherit;
-  width: 538px;
-  height: 414px;
-  left: 612px;
-  top: 145px;
-  margin: 0 0 auto;
-  background: #ffffff;
-  border-radius: 10px;
-}
-#txtAddTransacao {
-  position: relative;
-  width: 200px;
-  height: 43px;
-  left: 13px;
-  top: 13px;
+    display: flex;
+    align-items: center;
+  }
+  #col1{
+    position: absolute;
+    width: 209px;
+    height: 100px;
+    left: 25px;
+    top: 37px;
+  
+    background: #037394;
+    border-radius: 30px 0px 0px 30px;
+  }
+  #txt-col1{
+    position: absolute;
+    width: 105px;
+    height: 76px;
+    left: 95px;
+    top: 12px;
+    
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    
+    color: rgba(0, 0, 0, 0.73);
+  }
+  #col2{
+    position: absolute;
+    width: 260px;
+    height: 100px;
+    left: 234px;
+    top: 37px;
 
-  background: #95c4d2;
-  border-radius: 10px;
-  text-align: center;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 40px;
-  text-align: center;
+    background: #FFFFFF;
+  }
+  #txt-col2{
+    position: absolute;
+    width: 140px;
+    height: 20px;
+    left: 12px;
+    top: 8px;
 
-  color: #000000;
-}
-#txtTexto {
-  position: absolute;
-  width: 209px;
-  height: 100px;
-  left: 24px;
-  top: 50px;
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
 
-  background: #037394;
-  border-radius: 30px 0px 0px 30px;
-}
-#txt {
-  position: absolute;
-  width: 105px;
-  height: 76px;
-  left: 95px;
-  top: 12px;
+    color: #037394;
+  }
+  #saldo{
+    position: absolute;
+    width: 140px;
+    height: 20px;
+    left: 12px;
+    top: 40px;
+    
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 37px;
+    display: flex;
+    align-items: center;
+    
+    color: #037394;
+  }
+  #col3{
+    position: absolute;
+    width: 260px;
+    height: 100px;
+    left: 492px;
+    top: 37px;
+    
+    background: #FFFFFF;
+  }
+  #txt-col3{
+    position: absolute;
+    width: 101px;
+    height: 20px;
+    left: 12px;
+    top: 8px;
 
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 27px;
-  display: flex;
-  align-items: center;
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
 
-  color: rgba(0, 0, 0, 0.73);
-}
-#txtTransacoes {
-  position: relative;
-  width: 200px;
-  height: 43px;
-  left: 24px;
-  top: 14px;
+    color: #1A5F31;
+  }
+  #receita{
+    position: absolute;
+    width: 140px;
+    height: 20px;
+    left: 12px;
+    top: 40px;
 
-  background: #95c4d2;
-  border-radius: 10px;
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 37px;
+    display: flex;
+    align-items: center;
 
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 40px;
-  /* identical to box height */
+    color: #1A5F31;
+  }
+  #col4{
+    position: absolute;
+    width: 260px;
+    height: 100px;
+    left: 752px;
+    top: 37px;
+    
+    background: #FFFFFF;
+    border-radius: 0px 30px 30px 0px;
+  }
+  #txt-col4{
+    position: absolute;
+    width: 101px;
+    height: 20px;
+    left: 12px;
+    top: 8px;
 
-  text-align: center;
-  color: #000000;
-}
-#saldoAtual {
-  position: absolute;
-  width: 260px;
-  height: 100px;
-  left: 233px;
-  top: 50px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
 
-  background: #ffffff;
-}
-#receitas {
-  position: absolute;
-  width: 260px;
-  height: 100px;
-  left: 491px;
-  top: 50px;
+    color: #850D0D;
 
-  background: #ffffff;
-}
-#despesas {
-  position: flex;
-  width: 260px;
-  height: 100px;
-  left: 746px;
-  top: 9px;
+  }
+  #despesa{
+    position: absolute;
+    width: 140px;
+    height: 20px;
+    left: 12px;
+    top: 40px;
 
-  background: #ffffff;
-  border-radius: 0px 30px 30px 0px;
-}
-#listaTransacoes {
-  position: relative;
-  width: 496px;
-  height: 46px;
-  left: 26px;
-  top: 80px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 37px;
+    display: flex;
+    align-items: center;
 
-  background: #e1e1e1;
-  border-radius: 10px;
-}
-#btnAdicionar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 8px 12px;
+    color: #850D0D;
+  }
+  #transacoes{
+    position: absolute;
+    width: 538px;
+    height: 414px;
+    left: 15px;
+    top: 145px;
+    box-sizing: content-box;
+    display: flex;
+    background: #FFFFFF;
+    border-radius: 10px;
+  }
+  #listaTransacoes{
+    position: absolute;
+    width: 496px;
+    height: 46px;
+    left: 20px;
+    top: 80px;
+    
+    background: #E1E1E1;
+    border-radius: 10px;
+  }
+  #addTransacoes{
+    position: absolute;
+    width: 538px;
+    height: 414px;
+    left: 590px;
+    top: 145px;
+    box-sizing: content-box;
+    display: flex;
+  
+    background: #FFFFFF;
+    border-radius: 10px;
+  }
+  #txtTransacoes{
+    position: absolute;
+    width: 172px;
+    height: 43px;
+    left: 24px;
+    top: 14px;
 
-  position: relative;
-  width: 318px;
-  height: 43px;
-  left: 220px;
-  top: 312px;
+    background: #95C4D2;
+    border-radius: 10px;
 
-  /* Style */
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
 
-  background: #037394;
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.06);
-  border-radius: 10px;
-}
-#txtSaldoAtual {
-  position: absolute;
-  width: 140px;
-  height: 20px;
-  left: 12px;
-  top: 8px;
+    display: flex;
+    align-items: center;
 
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  display: flex;
-  align-items: center;
-  text-transform: capitalize;
+    color: #000000;
 
-  color: #037394;
+  }
+  #atualizar{
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    
+    position: absolute;
+    width: 138px;
+    height: 43px;
+    left: 393px;
+    top: 15px;
+    
+    /* Style */
+    
+    background: #037394;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+  }
+  #txtAddTransacao{
+    position: absolute;
+    width: 251px;
+    height: 43px;
+    left: 13px;
+    top: 13px;
+    
+    background: #95C4D2;
+    border-radius: 10px;
 
-  border: 1px solid #037394;
-}
-#saldo {
-  position: absolute;
-  width: 140px;
-  height: 20px;
-  left: 12px;
-  top: 40px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
 
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 25px;
-  line-height: 37px;
-  display: flex;
-  align-items: center;
+    color: #000000;
+  }
+  #input-group-1{
+    position: absolute;
+    width: 514px;
+    height: 62px;
+    left: 13px;
+    top: 86px;
+    
+    background: #E1E1E1;
+    border-radius: 10px;
+  }
+  #input-1 .input-1{ 
+    position: absolute;
+    width: 268px;
+    height: 62px;
+    left: 27px;
+    top: 87px;
+    
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    
+    color: rgba(3, 3, 3, 0.46);
+  }
+  #input-group-2{
+    position: absolute;
+    width: 514px;
+    height: 62px;
+    left: 12px;
+    top: 178px;
+    
+    background: #E1E1E1;
+    border-radius: 10px;
+  }
+  #input-2 .input-2{
+    position: absolute;
+    width: 296px;
+    height: 62px;
+    left: 27px;
+    top: 178px;
+    
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    
+    color: #000000;
+  }
+  #input-group-3{
+    position: absolute;
+    width: 514px;
+    height: 62px;
+    left: 13px;
+    top: 270px;
+    
+    background: #E1E1E1;
+    border-radius: 10px;
+  }
+  #input-3 .input-3{
+    position: absolute;
+    width: 268px;
+    height: 62px;
+    left: 28px;
+    top: 270px;
+    
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    
+    color: rgba(3, 3, 3, 0.46);
+  }
+  #btnAdicionar{
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
 
-  color: #037394;
-}
+    position: absolute;
+    width: 117px;
+    height: 43px;
+    left: 209px;
+    top: 361px;
+
+    /* Style */
+
+    background: #037394;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+  }
+  #txtAdicionar{
+    position: static;
+    height: 27px;
+    left: 10.26%;
+    right: 10.26%;
+    top: 8px;
+    
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: flex-end;
+    
+    color: #FFFFFF;
+    
+    
+    /* Inside Auto Layout */
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 177px;
+  }
 </style>
