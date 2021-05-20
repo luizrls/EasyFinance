@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 
 import router from "@/router";
+import Vuelidate from "vuelidate";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -10,6 +11,8 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 // Isso importa todos os componentes de layout, como <b-container>, <b-row>, <b-col>
 import {LayoutPlugin} from 'bootstrap-vue';
 Vue.use (LayoutPlugin);
+
+Vue.use(Vuelidate);
 
 Vue.config.productionTip = false;
 

@@ -6,6 +6,12 @@
     <b-row fuid="md">
       <b-col cols="3" class="col-md-3" fluid="md" id="col1">
         <h3 id="txt-col1" fuid="md">ONDE ESTA O MEU DINHEIRO</h3>
+         <img
+          src="@/assets/img/logo2.png"
+          class="img-fluid max-width: 100% height: auto"
+          alt="Responsive image"
+          id="img-fluid"
+        />
       </b-col>
       <b-col cols="3" class="col-md-3" fluid="md" id="col2">
         <h3 id="txt-col2" fuid="md">Saldo atual</h3>
@@ -40,8 +46,8 @@
           >
             Atualizar
           </button>
-        <div >
-        <ul id="listaTransacoes">
+        
+        <ul >
          <li class="list-group-item d-flex justify-content-between align-items-center"
             v-for="(item, index) in transacoes"
             :key="index"
@@ -58,7 +64,7 @@
             </button>
           </li>    
         </ul>
-        </div>
+        
       </b-col>
 
       <b-col cols="6" cols-md="12" fluid="md" id="addTransacoes">
@@ -102,6 +108,7 @@
             <b-form-input
               id="input-3"
               v-model="form.date"
+              type="data"
               placeholder="Data da Transação"
               required
             ></b-form-input>
@@ -406,17 +413,19 @@ export default {
     top: 145px;
     box-sizing: content-box;
     display: flex;
-    background: #FFFFFF;
+    
     border-radius: 10px;
+    overflow: auto;
   }
-  #listaTransacoes{
+  .list-group-item {
     position: absolute;
     width: 496px;
     height: 46px;
     left: 20px;
     top: 80px;
+    background-color: #FFFFFF;
     
-    background: #E1E1E1;
+    
     border-radius: 10px;
   }
   #addTransacoes{
@@ -615,5 +624,18 @@ export default {
     order: 0;
     flex-grow: 0;
     margin: 0px 177px;
+  }
+  .justify-content-between{
+    left: -2em;
+  }
+  .align-items-center{
+    width: 32em;
+  }
+  #img-fluid {
+    position: revert;
+    width: 80px;
+    height: 90px;
+    display: flex;
+    border-radius: inherit;
   }
 </style>

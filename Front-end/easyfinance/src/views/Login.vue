@@ -14,6 +14,12 @@
       <div class="col-md-4 col-sm-12 text-justify" id="form">
         <form>
           <h2 id="txtLogin">Login</h2>
+          <img
+          src="@/assets/img/logoPessoa.png"
+          class="img-fluid max-width: 100% height: auto"
+          alt="Responsive image"
+          id="img-fluid-pessoa"
+          />
           <div class="form-group">
             <label id="txtEmail" for="InputEmail">Email</label>
             <input
@@ -33,8 +39,8 @@
             />
           </div>
           <button type="submit" class="btn btn-primary" id="btnEntrar" >
-          <a href="/Home">Entrar</a></button
-          ><br />
+          <a href="/Home"></a>Entrar</button
+          ><br>
           <div class="text-center">
             <label id="Cadastre"
               >Não tem Cadastro?<a href="/Cadastro"> Cadastre-se </a>
@@ -49,6 +55,7 @@
 <script>
 export default {
   name: "Login",
+
 };
 </script>
 
@@ -132,7 +139,7 @@ export default {
   height: 43px;
   left: 150px;
   top: 424px;
-
+  color: #e5e5e5;
   background: #037394;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.06);
   border-radius: 10px;
@@ -157,5 +164,13 @@ export default {
   color: #037394;
 
   border: 1px solid #e5e5e5;
+}
+#img-fluid-pessoa{
+    position: absolute;
+    width: 99px;
+    height: 90px;
+    display: flex;
+    left: calc(50% - 95px / 2 + 16px);
+    top: calc(50% - 207px / 2 - 129px);
 }
 </style>

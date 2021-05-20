@@ -21,7 +21,10 @@
               class="form-control"
               id="InputName"
               placeholder="Digite seu nome"
+              v-model="InputName"
+              @change="$v.InputName.$touch()"
             />
+            <small v-if="$v.InputName.$error">Preencha o campo nome!</small>
           </div>
 
           <div class="form-group">
@@ -31,7 +34,10 @@
               class="form-control"
               id="InputEmail"
               placeholder="Digite seu e-mail"
+              v-model="InputEmail"
+              @change="$v.InputEmail.$touch()"
             />
+            <small v-if="$v.InputEmail.$error">Digite um email valido!</small>
           </div>
           <div class="form-group">
             <label for="InputPassword">Senha</label>
@@ -40,18 +46,24 @@
               class="form-control"
               id="InputPassword"
               placeholder="Digite sua senha"
+              v-model="InputPassword"
+              @change="$v.InputPassword.$touch()"
             />
+            <small v-if="$v.InputPassword.$error">Preencha o campo senha!</small>
           </div>
           <div class="form-group">
-            <label for="InputPassword">Confirmar Senha</label>
+            <label for="ConfirmPassword">Confirmar Senha</label>
             <input
               type="password"
               class="form-control"
               id="ConfirmPassword"
               placeholder="Confirme sua senha"
+              v-model="ConfirmPassword"
+              @change="$v.ConfirmPassword.$touch()"
             />
+            <small v-if="$v.ConfirmPassword.$error">As senhas devem ser iguais!</small>
           </div>
-          <button type="submit" class="btn btn-primary text-center" id="btnCadastrar">
+          <button type="submit" class="btn btn-primary text-center" id="btnCadastrar" @click.prevent="cadastrar()">
            <a href="/Login" >Cadastrar</a>
           </button>
         </form>
@@ -61,8 +73,37 @@
 </template>
 
 <script>
+import { required, email, sameAs } from 'vuelidate/lib/validators';
+
 export default {
   name: "/Cadastro",
+  data: () =>({
+    InputName:'',
+    InputEmail:'',
+    InputPassword:'',
+    ConfirmPassword:'',
+  }),
+  validations: {
+    InputName: {required},
+    InputEmail: {required, email},
+    InputPassword: {required},
+    ConfirmPassword: {
+      required, 
+      sameAs: sameAs('InputPassword')
+      },
+  },
+
+  methods: {
+    cadastrar(){
+      if(!this.$v.$invalid){
+        alert("Cliente cadastrado com sucesso!");
+      }
+      else{ 
+        this.$v.$touch();
+      }
+    }
+  }
+
 };
 </script>
 
@@ -128,7 +169,7 @@ export default {
     padding: 10px 16px;
 
     width: 296px;
-    height: 62px;
+    height: 45px;
     left: 828px;
     top: 176px;
 
@@ -144,7 +185,7 @@ export default {
     padding: 0px;
 
     width: 296px;
-    height: 62px;
+    height: 45px;
     left: 828px;
     top: 264px;
 
@@ -160,7 +201,7 @@ export default {
     padding: 0px;
 
     width: 296px;
-    height: 62px;
+    height: 45px;
     left: 828px;
     top: 352px;
 
@@ -176,7 +217,7 @@ export default {
     padding: 10px 16px;
 
     width: 296px;
-    height: 62px;
+    height: 45px;
     left: 824px;
     top: 356px;
 
@@ -197,11 +238,9 @@ export default {
     top: 444px;
 
     /* Style */
-
+    color: white;
     background: #037394;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.06);
     border-radius: 10px;
 }
-
-
 </style>
