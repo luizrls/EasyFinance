@@ -1,5 +1,6 @@
 <template>
     <div class="container" id="container">
+
       <div class="row">
         <div class="col-md-8 col-sm-12">
           <img
@@ -14,6 +15,7 @@
 
         <div class="col-md-4 col-sm-12 text-justify" id="login-entrar">
           <form v-on:submit.prevent>
+            <div v-show="loginFail" class="alert alert-danger" role="alert"> Usuario não localizado </div>
             <div class="form-group">
               <h2>Login</h2>
               <label for="exampleInputEmail1">E-mail</label>
@@ -48,19 +50,27 @@
 
 <script>
 import usuarioAPI from '@/services/usuarioService.js';
+import storageService from '@/services/storageService.js';
 export default {
   name: "Login",
   data() {
     return {
       login: "",
-      senha: ""
+      senha: "",
+      usuario:{},
+      loginFail: false,
     }
   },
   methods: {
     async logar(){
-      console.log("metodo logar")
-      var usuario = await usuarioAPI.logar(this.login, this.senha);
-      console.log(usuario);
+      this.usuario = await usuarioAPI.logar(this.login, this.senha);
+      if(this.usuario){
+        storageService.setItem("token",this.usuario.login);
+        this.$router.push('/');
+        this.loginFail = false;
+      }else{
+        this.loginFail = true;
+      }
     }
   },
 };

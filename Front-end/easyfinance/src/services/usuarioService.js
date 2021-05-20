@@ -11,7 +11,7 @@ const usuarioAPI = {
         status: "string",
         transacoes: [],
       })
-      .then((number) => console.log(number))
+      .then((obj) => obj.data)
       .catch((err) => console.error(err)),
   addUsuario: (usuario) => api.post("/Usuarios", usuario),
 };
