@@ -6,12 +6,6 @@
     <b-row fuid="md">
       <b-col cols="3" class="col-md-3" fluid="md" id="col1">
         <h3 id="txt-col1" fuid="md">ONDE ESTA O MEU DINHEIRO</h3>
-         <img
-          src="@/assets/img/logo2.png"
-          class="img-fluid max-width: 100% height: auto"
-          alt="Responsive image"
-          id="img-fluid"
-        />
       </b-col>
       <b-col cols="3" class="col-md-3" fluid="md" id="col2">
         <h3 id="txt-col2" fuid="md">Saldo atual</h3>
@@ -46,29 +40,28 @@
           >
             Atualizar
           </button>
-        
-        <ul >
+        <div> 
+        <ul class="list-group">
          <li class="list-group-item d-flex justify-content-between align-items-center"
             v-for="(item, index) in transacoes"
             :key="index"
-            
           >
-           {{ item.nome }}
+            {{ item.nome }}
             <span class="badge badge-primary badge-pill" data-spy="scroll"><b>R$ </b> {{ item.valor }}</span>
             <button aria-label="Close"
               type="button"
               class="btn btn-primary"
               @click="_ExcTransacao(item.id)"
             >
-              x
+               <b-icon icon="x-circle" scale="2" variant="danger"></b-icon>x
             </button>
           </li>    
         </ul>
-        
+        </div>
       </b-col>
 
       <b-col cols="6" cols-md="12" fluid="md" id="addTransacoes">
-        <h1 id="txtAddTransacao">Adicionar transação</h1>
+        <h2 id="txtAddTransacao">Adicionar transação</h2>
         <b-form>
           <b-form-group
             class="text-justify"
@@ -108,7 +101,6 @@
             <b-form-input
               id="input-3"
               v-model="form.date"
-              type="data"
               placeholder="Data da Transação"
               required
             ></b-form-input>
@@ -127,19 +119,22 @@
 </template>
 
 <script>
-
-import transacaoAPI from '@/services/transacaoService.js'
+import {
+  getTransacoesByUsuarioId,
+  addTransacao,
+  excTransacao,
+} from "@/services/transacaoService.js";
 
 export default {
-name: 'Home',
-methods: {
-  _getTransacoesByUsuarioId(id){
-    var retorno = transacaoAPI.getTransacoesByUsuarioId(id);
-    console.log(retorno);
-    var saldoAtual = 0;
-    var receitas = 0;
-    var despesas = 0;
-    retorno.forEach(item => {
+  name: "Home",
+  methods: {
+    _getTransacoesByUsuarioId(id) {
+      var retorno = getTransacoesByUsuarioId(id);
+      console.log(retorno);
+      var saldoAtual = 0;
+      var receitas = 0;
+      var despesas = 0;
+      retorno.forEach((item) => {
         saldoAtual = saldoAtual + item.valor;
         if (item.valor > 0) {
           receitas = receitas + item.valor;
@@ -210,12 +205,14 @@ methods: {
         data: "",
       },
     };
-
   },
 };
 </script>
 
 <style>
+*{
+  box-sizing: content-box;
+}
 .container{
     position: relative;
     width: 1181px;
@@ -223,7 +220,7 @@ methods: {
   
     background: linear-gradient(180deg, rgba(172, 172, 172, 0.4) 99.45%, #E8F2FF 100%);
     border-radius: 30px;
-    box-sizing: content-box;
+    
   }
   #T1{
     position: absolute;
@@ -411,19 +408,17 @@ methods: {
     top: 145px;
     box-sizing: content-box;
     display: flex;
-    
+    background: #FFFFFF;
     border-radius: 10px;
-    overflow: auto;
   }
-  .list-group-item {
+  #listaTransacoes{
     position: absolute;
-    width: 496px;
-    height: 46px;
-    left: 20px;
+    width: 528px;
+    height: 320px;
+    left: 30px;
     top: 80px;
-    background-color: #FFFFFF;
     
-    
+    background: #E1E1E1;
     border-radius: 10px;
   }
   #addTransacoes{
@@ -622,18 +617,5 @@ methods: {
     order: 0;
     flex-grow: 0;
     margin: 0px 177px;
-  }
-  .justify-content-between{
-    left: -2em;
-  }
-  .align-items-center{
-    width: 32em;
-  }
-  #img-fluid {
-    position: revert;
-    width: 80px;
-    height: 90px;
-    display: flex;
-    border-radius: inherit;
   }
 </style>

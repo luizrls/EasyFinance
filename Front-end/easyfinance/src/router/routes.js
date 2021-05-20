@@ -2,6 +2,8 @@ import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
 import SobreNos from "@/views/SobreNos.vue";
 import PageNotFound from "@/views/PageNotFound.vue";
+import Cadastro from "@/views/Cadastro.vue";
+import Teste from "@/views/Teste.vue";
 
 const routes = [
   {
@@ -15,9 +17,19 @@ const routes = [
     component: Login,
   },
   {
+    name: "Cadastro",
+    path: "/Cadastro",
+    component: Cadastro,
+  },
+  {
     name: "SobreNos",
     path: "/SobreNos",
     component: SobreNos,
+  },
+  {
+    name: "Teste",
+    path: "/Teste",
+    component: Teste,
   },
   { path: "*", component: PageNotFound },
 ];
