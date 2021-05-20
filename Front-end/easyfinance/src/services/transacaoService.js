@@ -1,3 +1,14 @@
+import api from "./api.js";
+
+const transacaoAPI = {
+  getTransacoesByUsuarioId: (id) => api.get("/Transacoes/ByUserId/" + id),
+  addTransacao: (transacao) => api.post("/Transacoes", transacao),
+  excTransacao: (id) => api.get("/Transacoes/" + id),
+};
+
+export default transacaoAPI;
+
+/* 
 var lista = [
   {
     id: 1,
@@ -43,3 +54,4 @@ export const excTransacao = (id) => {
   console.log(lista);
   return true;
 };
+ */

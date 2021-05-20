@@ -1,4 +1,5 @@
 <template>
+
   <div class="container-md">
     <div class="row">
       <div class="col-md-8 col-sm-12">
@@ -14,6 +15,7 @@
       <div class="col-md-4 col-sm-12 text-justify" id="form">
         <form>
           <h2 id="txtLogin">Login</h2>
+
           <img
           src="@/assets/img/logoPessoa.png"
           class="img-fluid max-width: 100% height: auto"
@@ -47,16 +49,40 @@
             </label>
           </div>
         </form>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import usuarioAPI from '@/services/usuarioService.js';
+import storageService from '@/services/storageService.js';
 export default {
   name: "Login",
+  data() {
+    return {
+      login: "",
+      senha: "",
+      usuario:{},
+      loginFail: false,
+    }
+  },
+  methods: {
+    async logar(){
+      this.usuario = await usuarioAPI.logar(this.login, this.senha);
+      if(this.usuario){
+        storageService.setItem("token",this.usuario.login);
+        this.$router.push('/');
+        this.loginFail = false;
+      }else{
+        this.loginFail = true;
+      }
+    }
+  },
 
 };
+
 </script>
 
 <style>

@@ -106,5 +106,20 @@ namespace EasyfinanceApi.Controllers
         {
             return _context.Usuario.Any(e => e.id == id);
         }
+
+        [HttpPost("Logar")]
+        public async Task<ActionResult<Usuarios>> Logar(Usuarios usuario)
+        {
+            var user = await _context.Usuario.Where(x => x.login == usuario.login && x.senha == usuario.senha).FirstOrDefaultAsync();
+            
+            if(user != null)
+            {
+                return user;
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

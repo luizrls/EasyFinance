@@ -127,22 +127,19 @@
 </template>
 
 <script>
-import {
-  getTransacoesByUsuarioId,
-  addTransacao,
-  excTransacao,
-} from "@/services/transacaoService.js";
+
+import transacaoAPI from '@/services/transacaoService.js'
 
 export default {
-  name: "Home",
-  methods: {
-    _getTransacoesByUsuarioId(id) {
-      var retorno = getTransacoesByUsuarioId(id);
-      console.log(retorno);
-      var saldoAtual = 0;
-      var receitas = 0;
-      var despesas = 0;
-      retorno.forEach((item) => {
+name: 'Home',
+methods: {
+  _getTransacoesByUsuarioId(id){
+    var retorno = transacaoAPI.getTransacoesByUsuarioId(id);
+    console.log(retorno);
+    var saldoAtual = 0;
+    var receitas = 0;
+    var despesas = 0;
+    retorno.forEach(item => {
         saldoAtual = saldoAtual + item.valor;
         if (item.valor > 0) {
           receitas = receitas + item.valor;
@@ -213,6 +210,7 @@ export default {
         data: "",
       },
     };
+
   },
 };
 </script>
