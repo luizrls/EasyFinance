@@ -65,7 +65,7 @@ export default {
     async logar(){
       this.usuario = await usuarioAPI.logar(this.login, this.senha);
       if(this.usuario){
-        storageService.setItem("token",this.usuario.login);
+        storageService.setItem("usuario",JSON.stringify(this.usuario));
         this.$router.push('/');
         this.loginFail = false;
       }else{

@@ -20,6 +20,7 @@
 
 <script>
 import transacaoAPI from '@/services/transacaoService.js'
+import storageService from '@/services/storageService.js';
 
 export default {
 name: 'Home',
@@ -66,13 +67,7 @@ methods: {
 data() {
     return { 
         count: 4,
-        usuario: {
-            id: 1,
-            nome: "Usuario Teste 1",
-            login: "login1",
-            senha: "1234",
-            status: "Ativo",
-        },
+        usuario: JSON.parse(storageService.getItem("usuario")),
         transacoes: [],
         saldoAtual: 1,
         receitas: 2,
