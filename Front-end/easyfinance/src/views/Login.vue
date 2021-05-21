@@ -1,6 +1,7 @@
 <template>
 
   <div class="container-md">
+    <div v-show="loginFail" class="alert alert-danger" role="alert"> Usuario não localizado </div>
     <div class="row">
       <div class="col-md-8 col-sm-12">
         <img
@@ -13,7 +14,7 @@
       </div>
 
       <div class="col-md-4 col-sm-12 text-justify" id="form">
-        <form>
+        <form v-on:submit.prevent>
           <h2 id="txtLogin">Login</h2>
 
           <img
@@ -29,6 +30,8 @@
               class="form-control"
               id="Email"
               placeholder="Digite seu e-mail"
+              v-model="login"
+
             />
           </div>
           <div class="form-group">
@@ -38,9 +41,10 @@
               class="form-control"
               id="Password"
               placeholder="Digite sua senha"
+              v-model="senha"
             />
           </div>
-          <button type="submit" class="btn btn-primary" id="btnEntrar" >
+          <button type="submit" class="btn btn-primary" id="btnEntrar" v-on:click="logar()" >
           <a href="/Home"></a>Entrar</button
           ><br>
           <div class="text-center">
@@ -80,7 +84,6 @@ export default {
       }
     }
   },
-
 };
 
 </script>

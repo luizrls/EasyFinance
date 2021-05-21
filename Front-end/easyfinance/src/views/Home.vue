@@ -1,21 +1,127 @@
 <template>
-<div class='Home'>
-    <div class="container">
-        <h3>Saldo atual: <b>{{saldoAtual}}</b></h3>
-        <h3>Receitas: <b>{{receitas}}</b></h3>
-        <h3>Despesas: <b>{{despesas}}</b></h3>
-        <br>
-        <ul>
-            <li v-for="(item, index) in transacoes" :key="index">
-                <b>ID:</b>{{item.id}} | <b>Nome:</b> {{item.nome}} | <b>Valor:</b> {{item.valor}} 
-                <button type="button" class="btn btn-primary" @click="_ExcTransacao(item.id)">excuir</button>
-            </li>
+<b-container fuid="md">
+    <b-row >
+      <h3 id="T1">Bem Vindo!</h3>
+    </b-row><br>
+    <b-row fuid="md">
+      <b-col cols="3" class="col-md-3" fluid="md" id="col1">
+        <h3 id="txt-col1" fuid="md">ONDE ESTA O MEU DINHEIRO</h3>
+         <img
+          src="@/assets/img/logo2.png"
+          class="img-fluid max-width: 100% height: auto"
+          alt="Responsive image"
+          id="img-fluid"
+        />
+      </b-col>
+      <b-col cols="3" class="col-md-3" fluid="md" id="col2">
+        <h3 id="txt-col2" fuid="md">Saldo atual</h3>
+        <label id="saldo"
+            >R$<b>{{ saldoAtual }}</b>
+        </label>
+      </b-col>
+      <b-col cols="3" class="col-md-3" fluid="md" id="col3">
+        <h3 id="txt-col3" fuid="md">Receitas</h3>
+        <label id="receita"
+            >R$<b>{{ receitas }}</b>
+            </label>
+      </b-col>
+      <b-col cols="3" class="col-md-3" fluid="md" id="col4">
+        <h3 id="txt-col4" fuid="md">Despesas</h3>
+        <label id="despesa"
+            >R$<b>{{ despesas }}</b></label
+          >
+      </b-col>
+    </b-row>
+    <br />
+
+    <b-row fluid="md" align-h="around" class="row row-cols-2">
+
+      <b-col cols="6" cols-md="12" fluid="md"  id="transacoes" >
+        <h1 id="txtTransacoes">Transações</h1>
+        <button
+            id="atualizar"
+            type="button"
+            class="btn btn-primary"
+            @click="_getTransacoesByUsuarioId(usuario.id)"
+          >
+            Atualizar
+          </button>
+        
+        <ul >
+         <li class="list-group-item d-flex justify-content-between align-items-center"
+            v-for="(item, index) in transacoes"
+            :key="index"
+            
+          >
+           {{ item.nome }}
+            <span class="badge badge-primary badge-pill" data-spy="scroll"><b>R$ </b> {{ item.valor }}</span>
+            <button aria-label="Close"
+              type="button"
+              class="btn btn-primary"
+              @click="_ExcTransacao(item.id)"
+            >
+              x
+            </button>
+          </li>    
         </ul>
-        <button type="button" class="btn btn-primary" @click="_addTransacao()">Adicionar</button>
-        <button type="button" class="btn btn-primary" @click="_getTransacoesByUsuarioId(usuario.id)">Atualizar</button>
-    </div>
-  <slot />
-</div>
+        
+      </b-col>
+
+      <b-col cols="6" cols-md="12" fluid="md" id="addTransacoes">
+        <h1 id="txtAddTransacao">Adicionar transação</h1>
+        <b-form v-on:submit.prevent>
+          <b-form-group
+            class="text-justify"
+            id="input-group-1"
+            label="Nome"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              v-model="form.name"
+              placeholder="Nome da Transação"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            id="input-group-2"
+            label="Valor"
+            label-for="input-2"
+            class="text-justify"
+          >
+            <b-form-input
+              id="input-2"
+              v-model="form.value"
+              placeholder="Valor da Transação"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            id="input-group-3"
+            label="Data"
+            label-for="input-2"
+            class="text-justify"
+          >
+            <b-form-input
+              id="input-3"
+              v-model="form.date"
+              placeholder="Data da Transação"
+              required
+            ></b-form-input>
+          </b-form-group>
+        </b-form>
+        <button
+          id="btnAdicionar"
+          type="button"
+          class="btn btn-primary"
+        >
+         <label for="txtAdicionar"><a @click="_addTransacao()">Adicionar</a></label>
+        </button>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -25,107 +131,77 @@ import storageService from '@/services/storageService.js';
 export default {
 name: 'Home',
 methods: {
-  _getTransacoesByUsuarioId(id){
-    var retorno = transacaoAPI.getTransacoesByUsuarioId(id);
+  async _getTransacoesByUsuarioId(id){
+    var retorno = await transacaoAPI.getTransacoesByUsuarioId(id);
     console.log(retorno);
     var saldoAtual = 0;
     var receitas = 0;
     var despesas = 0;
     retorno.forEach(item => {
         saldoAtual = saldoAtual + item.valor;
-        if (item.valor > 0) {
-          receitas = receitas + item.valor;
-        } else {
-          despesas = despesas + item.valor;
+        if(item.valor > 0){
+            receitas = receitas + item.valor;
+        }else{
+            despesas = despesas + item.valor;
         }
     });
     console.log(this.saldoAtual);
     this.saldoAtual = saldoAtual;
     this.receitas = receitas;
     this.despesas = (despesas * -1);
-    this.transacoes = retorno;
+    this.transacoes = retorno; 
   },
-  _addTransacao(){
-      });
-      console.log(this.saldoAtual);
-      this.saldoAtual = saldoAtual;
-      this.receitas = receitas;
-      this.despesas = despesas * -1;
-      this.transacoes = retorno;
-    },
-    _addTransacao() {
-      var transacao = {
-        id: 4,
-        nome: "Nova transacao",
-        valor: -10,
-        status: "Ativo",
-        competencia: "2021-04",
-        usuarioId: 1,
-        usuario: null,
-      };
-      addTransacao(transacao);
-      this._getTransacoesByUsuarioId(1);
-    },
-    _ExcTransacao(id) {
-      excTransacao(id);
-      this._getTransacoesByUsuarioId(1);
-    },
-     onSubmit(event) {
-        event.preventDefault()
-        alert(JSON.stringify(this.form))
-      },
-      onReset(event) {
-        event.preventDefault()
-        // Reset our form values
-        this.form.email = ''
-        this.form.name = ''
-        this.form.food = null
-        this.form.checked = []
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
+  async _addTransacao(){
+      console.log("Inicio")
+      
+      console.log(this.usuario)
+      if(this.usuario && this.usuario.id > 0){
+        var transacao = {
+          "nome": this.form.name,
+          "valor": parseFloat(this.form.value),
+          "status": "Ativo",
+          "competencia": this.form.date,
+          "usuarioId": this.usuario.id,
+          "usuario": null
+        }
+        console.log(transacao)
+        await transacaoAPI.addTransacao(transacao);
+        await this._getTransacoesByUsuarioId(this.usuario.id);
       }
   },
-<<<<<<< HEAD
+  async _ExcTransacao(id){
+    console.log("Excluindo id: " + id)
+    await transacaoAPI.excTransacao(id);
+    await this._getTransacoesByUsuarioId(this.usuario.id);
+  },
 },
 data() {
     return { 
         count: 4,
-        usuario: JSON.parse(storageService.getItem("usuario")),
+        usuario: {
+            id: 1,
+            nome: "Usuario Teste 1",
+            login: "login1",
+            senha: "1234",
+            status: "Ativo",
+        },
         transacoes: [],
         saldoAtual: 1,
         receitas: 2,
-        despesas: 3
+        despesas: 3,
+        form: {
+        name: "",
+        value: "",
+        date: "",
+      },
         }
-=======
-
-  data() {
-    return {
-      count: 4,
-      usuario: {
-        id: 1,
-        nome: "Usuario Teste 1",
-        login: "login1",
-        senha: "1234",
-        status: "Ativo",
-      },
-      transacoes: [],
-      saldoAtual: "",
-      receitas: 2,
-      despesas: 3,
-      
-      form: {
-        email: "",
-        nome: "",
-        data: "",
-      },
-    };
-
->>>>>>> 32228c26999e9726a68aca3650beef203a5516c7
   },
-};
+  created() {
+    var usuario = JSON.parse(storageService.getItem("usuario"));
+    this.usuario = usuario;
+    this.transacoes = this._getTransacoesByUsuarioId(usuario.id);
+  }
+}
 </script>
 
 <style>
