@@ -114,6 +114,7 @@ namespace EasyfinanceApi.Controllers
             
             if(user != null)
             {
+                user.senha = "******";
                 return user;
             }
             else

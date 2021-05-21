@@ -1,21 +1,9 @@
 import api from "./api.js";
 
 const transacaoAPI = {
-  getTransacoesByUsuarioId: async (id) =>
-    await api
-      .get("/Transacoes/ByUserId/" + id)
-      .then((obj) => obj.data)
-      .catch((err) => console.error(err)),
-  addTransacao: async (transacao) =>
-    await api
-      .post("/Transacoes", transacao)
-      .then((obj) => obj.data)
-      .catch((err) => console.error(err)),
-  excTransacao: async (id) =>
-    await api
-      .delete("/Transacoes/" + id)
-      .then((obj) => obj.data)
-      .catch((err) => console.error(err)),
+  getTransacoesByUsuarioId: (id) => api.get("/Transacoes/ByUserId/" + id),
+  addTransacao: (transacao) => api.post("/Transacoes", transacao),
+  excTransacao: (id) => api.get("/Transacoes/" + id),
 };
 
 export default transacaoAPI;

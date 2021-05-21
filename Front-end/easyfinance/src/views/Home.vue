@@ -1,5 +1,5 @@
 <template>
-  <b-container fuid="md">
+<b-container fuid="md">
     <b-row >
       <h3 id="T1">Bem Vindo!</h3>
     </b-row><br>
@@ -69,7 +69,7 @@
 
       <b-col cols="6" cols-md="12" fluid="md" id="addTransacoes">
         <h1 id="txtAddTransacao">Adicionar transação</h1>
-        <b-form>
+        <b-form v-on:submit.prevent>
           <b-form-group
             class="text-justify"
             id="input-group-1"
@@ -79,7 +79,6 @@
             <b-form-input
               id="input-1"
               v-model="form.name"
-              type="Name"
               placeholder="Nome da Transação"
               required
             ></b-form-input>
@@ -108,7 +107,6 @@
             <b-form-input
               id="input-3"
               v-model="form.date"
-              type="data"
               placeholder="Data da Transação"
               required
             ></b-form-input>
@@ -127,92 +125,83 @@
 </template>
 
 <script>
-
 import transacaoAPI from '@/services/transacaoService.js'
+import storageService from '@/services/storageService.js';
 
 export default {
 name: 'Home',
 methods: {
-  _getTransacoesByUsuarioId(id){
-    var retorno = transacaoAPI.getTransacoesByUsuarioId(id);
+  async _getTransacoesByUsuarioId(id){
+    var retorno = await transacaoAPI.getTransacoesByUsuarioId(id);
     console.log(retorno);
     var saldoAtual = 0;
     var receitas = 0;
     var despesas = 0;
     retorno.forEach(item => {
         saldoAtual = saldoAtual + item.valor;
-        if (item.valor > 0) {
-          receitas = receitas + item.valor;
-        } else {
-          despesas = despesas + item.valor;
+        if(item.valor > 0){
+            receitas = receitas + item.valor;
+        }else{
+            despesas = despesas + item.valor;
         }
-      });
-      console.log(this.saldoAtual);
-      this.saldoAtual = saldoAtual;
-      this.receitas = receitas;
-      this.despesas = despesas * -1;
-      this.transacoes = retorno;
-    },
-    _addTransacao() {
-      var transacao = {
-        id: 4,
-        nome: "Nova transacao",
-        valor: -10,
-        status: "Ativo",
-        competencia: "2021-04",
-        usuarioId: 1,
-        usuario: null,
-      };
-      addTransacao(transacao);
-      this._getTransacoesByUsuarioId(1);
-    },
-    _ExcTransacao(id) {
-      excTransacao(id);
-      this._getTransacoesByUsuarioId(1);
-    },
-     onSubmit(event) {
-        event.preventDefault()
-        alert(JSON.stringify(this.form))
-      },
-      onReset(event) {
-        event.preventDefault()
-        // Reset our form values
-        this.form.email = ''
-        this.form.name = ''
-        this.form.food = null
-        this.form.checked = []
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
+    });
+    console.log(this.saldoAtual);
+    this.saldoAtual = saldoAtual;
+    this.receitas = receitas;
+    this.despesas = (despesas * -1);
+    this.transacoes = retorno; 
+  },
+  async _addTransacao(){
+      console.log("Inicio")
+      
+      console.log(this.usuario)
+      if(this.usuario && this.usuario.id > 0){
+        var transacao = {
+          "nome": this.form.name,
+          "valor": parseFloat(this.form.value),
+          "status": "Ativo",
+          "competencia": this.form.date,
+          "usuarioId": this.usuario.id,
+          "usuario": null
+        }
+        console.log(transacao)
+        await transacaoAPI.addTransacao(transacao);
+        await this._getTransacoesByUsuarioId(this.usuario.id);
       }
   },
-
-  data() {
-    return {
-      count: 4,
-      usuario: {
-        id: 1,
-        nome: "Usuario Teste 1",
-        login: "login1",
-        senha: "1234",
-        status: "Ativo",
-      },
-      transacoes: [],
-      saldoAtual: "",
-      receitas: 2,
-      despesas: 3,
-      
-      form: {
-        email: "",
-        nome: "",
-        data: "",
-      },
-    };
-
+  async _ExcTransacao(id){
+    console.log("Excluindo id: " + id)
+    await transacaoAPI.excTransacao(id);
+    await this._getTransacoesByUsuarioId(this.usuario.id);
   },
-};
+},
+data() {
+    return { 
+        count: 4,
+        usuario: {
+            id: 1,
+            nome: "Usuario Teste 1",
+            login: "login1",
+            senha: "1234",
+            status: "Ativo",
+        },
+        transacoes: [],
+        saldoAtual: 1,
+        receitas: 2,
+        despesas: 3,
+        form: {
+        name: "",
+        value: "",
+        date: "",
+      },
+        }
+  },
+  created() {
+    var usuario = JSON.parse(storageService.getItem("usuario"));
+    this.usuario = usuario;
+    this.transacoes = this._getTransacoesByUsuarioId(usuario.id);
+  }
+}
 </script>
 
 <style>
