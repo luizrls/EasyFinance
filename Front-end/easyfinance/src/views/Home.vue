@@ -204,7 +204,7 @@ data() {
 }
 </script>
 
-<style>
+<style scoped>
 .container{
     position: relative;
     width: 1181px;
