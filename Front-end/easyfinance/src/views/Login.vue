@@ -1,6 +1,6 @@
 <template>
 
-  <div class="container-md">
+  <div class="container-md" fluid-md-container>
     <div v-show="loginFail" class="alert alert-danger" role="alert"> Usuario não localizado </div>
     <div class="row">
       <div class="col-md-8 col-sm-12">
@@ -31,8 +31,7 @@
               id="Email"
               placeholder="Digite seu e-mail"
               v-model="login"
-
-            />
+              >
           </div>
           <div class="form-group">
             <label id="txtSenha" for="InputPassword">Senha</label>
@@ -62,6 +61,7 @@
 <script>
 import usuarioAPI from '@/services/usuarioService.js';
 import storageService from '@/services/storageService.js';
+import { required, email } from 'vuelidate/lib/validators';
 export default {
   name: "Login",
   data() {
@@ -70,8 +70,14 @@ export default {
       senha: "",
       usuario:{},
       loginFail: false,
+      email:"",
     }
   },
+  validations:{ 
+    Email:{required, email},
+
+  },
+
   methods: {
     async logar(){
       this.usuario = await usuarioAPI.logar(this.login, this.senha);

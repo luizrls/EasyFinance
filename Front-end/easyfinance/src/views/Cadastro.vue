@@ -11,8 +11,8 @@
         />
       </div>
       
-      <div class="col-md-4 col-sm-12 text-justify" id="form">
-        <form>
+      <div class="col-md-4 col-sm-12 text-justify" id="form" >
+        <form >
           <h2 id="txtCriarConta">Criar Conta</h2>
           <div class="form-group">
             <label for="InputName">Nome</label>
@@ -23,8 +23,9 @@
               placeholder="Digite seu nome"
               v-model="InputName"
               @change="$v.InputName.$touch()"
+              @toggle-nav-drawer="toggleDrawer"
             />
-            <small v-if="$v.InputName.$error">Preencha o campo nome!</small>
+            <small id="txtvalidator" v-if="$v.InputName.$error">Preencha o campo nome!</small>
           </div>
 
           <div class="form-group">
@@ -37,7 +38,7 @@
               v-model="InputEmail"
               @change="$v.InputEmail.$touch()"
             />
-            <small v-if="$v.InputEmail.$error">Digite um email valido!</small>
+            <small id="txtvalidator" v-if="$v.InputEmail.$error">Digite um email valido!</small>
           </div>
           <div class="form-group">
             <label for="InputPassword">Senha</label>
@@ -49,7 +50,7 @@
               v-model="InputPassword"
               @change="$v.InputPassword.$touch()"
             />
-            <small v-if="$v.InputPassword.$error">Preencha o campo senha!</small>
+            <small id="txtvalidator" v-if="$v.InputPassword.$error">Preencha o campo senha!</small>
           </div>
           <div class="form-group">
             <label for="ConfirmPassword">Confirmar Senha</label>
@@ -61,10 +62,10 @@
               v-model="ConfirmPassword"
               @change="$v.ConfirmPassword.$touch()"
             />
-            <small v-if="$v.ConfirmPassword.$error">As senhas devem ser iguais!</small>
+            <small id="txtvalidator" v-if="$v.ConfirmPassword.$error">As senhas devem ser iguais!</small>
           </div>
           <button type="submit" class="btn btn-primary text-center" id="btnCadastrar" @click.prevent="cadastrar()">
-           <a href="/Login" >Cadastrar</a>
+           <a href="/Login" ></a>Cadastrar
           </button>
         </form>
       </div>
@@ -169,7 +170,7 @@ export default {
     padding: 10px 16px;
 
     width: 296px;
-    height: 45px;
+    height: 40px;
     left: 828px;
     top: 176px;
 
@@ -182,10 +183,10 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px;
+    padding: 10px 16px;
 
     width: 296px;
-    height: 45px;
+    height: 40px;
     left: 828px;
     top: 264px;
 
@@ -198,10 +199,10 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px;
+    padding: 10px 16px;
 
     width: 296px;
-    height: 45px;
+    height: 40px;
     left: 828px;
     top: 352px;
 
@@ -217,7 +218,7 @@ export default {
     padding: 10px 16px;
 
     width: 296px;
-    height: 45px;
+    height: 40px;
     left: 824px;
     top: 356px;
 
@@ -242,5 +243,8 @@ export default {
     background: #037394;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.06);
     border-radius: 10px;
+}
+#txtvalidator {
+  color: crimson;
 }
 </style>

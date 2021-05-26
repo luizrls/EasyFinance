@@ -10,7 +10,7 @@
 //import HelloWorld from './components/HelloWorld.vue'
 //import TesteComponente1 from './components/TesteComponente1.vue'
 export default {
-  name: 'App',
+  name: 'App', 
   components: {
     // HelloWorld
     //TesteComponente1
@@ -26,5 +26,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+@viewport{
+    zoom: 1.0;
+    width: device-width;
 }
 </style>
